@@ -1,0 +1,21 @@
+{
+  "name": "user-friendly-dsl",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "description": "",
+  "dependencies": {
+    "mobx": "^6.13.7",
+    "mobx-react": "^9.2.0",
+    "react": "^19.1.0",
+    "react-dom": "^19.1.0"
+  },
+  "devDependencies": {
+    "parcel": "^2.14.3"
+  },
+  "browserslist": "> 0.5%, last 2 versions, not dead"
+}

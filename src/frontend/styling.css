@@ -1,0 +1,68 @@
+body {
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 24pt;
+}
+
+span.keyword {
+    font-weight: bolder;
+    color: rgb(100, 100, 100);
+}
+
+.ws-right {
+    margin-right: 0.5rem;
+}
+
+.ws-left {
+    margin-left: 0.5rem;
+}
+
+.ws-both {
+    margin-right: 0.5rem;
+    margin-left: 0.5rem;
+}
+
+span.value {
+    padding-left: 0.15em;
+    padding-right: 0.15em;
+    border-radius: 5px;
+    background-color: rgb(228, 228, 228);
+}
+
+div.section {
+    margin-top: 1em;
+    margin-left: 1em;
+}
+
+div.attribute {
+    margin-left: 1em;
+}
+
+span.enum-like {
+    font-style: italic;
+}
+
+div.inline {
+    display: inline-block;
+}
+
+span.reference {
+    font-style: italic;
+    color: blue;
+    text-decoration: underline;
+}
+
+input {
+    font-size: 12pt;
+    border-radius: 5px;
+    border: 3px solid yellow;
+    background-color: lightyellow;
+    padding-left: 5px;
+}
+
+input:focus {
+    outline: none;
+}
+
+select {
+    font-size: 12pt;
+}
