@@ -66,3 +66,30 @@ input:focus {
 select {
     font-size: 12pt;
 }
+
+button.add-new {
+    font-size: 18pt;
+    border-radius: 10px;
+    border: 0;
+    background-color: rgb(49, 161, 49);
+    cursor: pointer;
+}
+
+span.value-missing {
+    background-color: rgb(209, 108, 108);
+    color: lightgray;
+    text-decoration: underline;
+    text-decoration-style: dashed;
+    text-decoration-color: rgb(228, 30, 23);
+}
+
+select option.action {
+    color: lightgray;
+    font-style: italic;
+}
+
+div.selected {    
+    background-color: khaki;    
+    width: max-content;       
+    outline: none;    
+}
