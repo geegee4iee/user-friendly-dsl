@@ -93,3 +93,30 @@ div.selected {
     width: max-content;       
     outline: none;    
 }
+
+div.spinner {
+    width: 40px;
+    height: 40px;
+    margin: 100px auto;
+    background-color: #333;
+    border-radius: 100%;
+    animation: sk-scaleout 1.0s infinite ease-in-out;
+}
+
+@keyframes sk-scaleout {
+    0% {
+        transform: scale(0);
+    }
+    100% {
+        transform: scale(1.0);
+        opacity: 0;
+    }
+}
+
+button.save { 
+    font-size: 18pt; 
+    border-radius: 10px; 
+    border: 0; 
+    background-color: rgb(236, 52, 52); 
+    cursor: pointer; 
+}

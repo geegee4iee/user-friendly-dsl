@@ -1,6 +1,7 @@
 import React from "react"
 import { createRoot } from "react-dom/client"
 import { observable, action } from "mobx"
+import { deserializeObservably } from "../common/ast"
 
 require("./styling.css")
 
@@ -16,12 +17,34 @@ const state = observable({
 fetch(apiUrl)
 .then((response) => response.json())
 .then(action((json) => {
-     state.ast = json
+     state.ast = deserializeObservably(json)
 }))
 
-createRoot(document.getElementById("root"))
-     .render(
+import { observer } from "mobx-react" 
+
+const save = (_) => {
+     fetch(apiUrl, {
+         method: "PUT",
+         headers: {
+             "Content-Type": "application/json"
+         },
+         body: JSON.stringify(serialize(state.ast)) 
+     })
+ }
+
+const App = observer(({ state }) =>
+    state.ast                
+        ? 
+        <div>
+          <button className="save" onClick={save}>Save</button>
           <Projection
-               astObject={observable(rental)}
-               ancestors={[]} />
-     )
+        astObject={state.ast}  
+        ancestors={[]}
+    /></div>
+        : <div className="spinner"></div>
+)
+
+createRoot(document.getElementById("root"))
+    .render(
+        <App state={state} />
+    )

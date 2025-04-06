@@ -19,3 +19,11 @@ const port = 8080
 server.listen(port, () => {          
     console.log(`Server started on: http://localhost:${port}`) 
 })
+
+server.use(express.json({ limit: "1gb" }))
+server.put("/contents", (request, response) => { 
+    const newContents = request.body 
+    writeContents(newContents) 
+    contents = newContents 
+    response.send() 
+})

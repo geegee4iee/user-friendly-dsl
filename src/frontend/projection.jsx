@@ -1,5 +1,5 @@
 import React from "react"
-import { isAstObject, placeholderAstObject } from "../common/ast"
+import { isAstObject, placeholderAstObject, astReferenceTo, newAstObject } from "../common/ast"
 import { TextValue, NumberValue, DropDownValue } from "./value-components"
 import { action, observable } from "mobx"
 import { observer } from "mobx-react"
@@ -28,26 +28,20 @@ export const Projection = observer(({ astObject, ancestors, replaceWith }) => {
                 <div className="section">
                     <div><span className="keyword">attributes:</span></div>
                     {
-                        settings["attributes"].map((attribute, index) => 
-                            <Projection 
-                                astObject={attribute} 
-                                ancestors={[astObject, ...ancestors]} 
+                        settings["attributes"].map((attribute, index) =>
+                            <Projection
+                                astObject={attribute}
+                                ancestors={[astObject, ...ancestors]}
                                 key={index}
                                 replaceWith={() => {
                                     settings["attributes"].splice(index, 1)
                                 }}
-                                 />)
+                            />)
                     }
-                    <button
-                        className="add-new"
-                        tabIndex={-1}
-                        onClick={action((_) => {
-                            settings["attributes"].push({
-                                concept: "Data Attribute",
-                                settings: {}
-                            })
-                        })}
-                    >+ attribute</button>
+                    <AddNewButton buttonText="+ attribute"
+                        actionFunction={() => {
+                            settings["attributes"].push(newAstObject("Data Attribute"))
+                        }} />
                 </div>
             </AstObjectUiWrapper>
 
@@ -70,10 +64,7 @@ export const Projection = observer(({ astObject, ancestors, replaceWith }) => {
                             editState={observable({
                                 inEdit: true,
                                 setValue: (newValue) => {
-                                    settings["initial value"] = {
-                                        concept: newValue,
-                                        settings: {}
-                                    }
+                                    settings["initial value"] = newAstObject(value)
                                 }
                             })}
                             options={[
@@ -110,9 +101,9 @@ export const Projection = observer(({ astObject, ancestors, replaceWith }) => {
                             value: settings["attribute"] && settings["attribute"].ref.settings["name"],
                             inEdit: false,
                             setValue: (newValue) => {
-                                settings["attribute"] = {
-                                    ref: attributes.find((attribute) => attribute.settings["name"] === newValue)
-                                }
+                                settings["attribute"] = astReferenceTo(
+                                    attributes.find((attribute) => attribute.settings["name"] === newValue)
+                                )
 
                             }
                         })}
